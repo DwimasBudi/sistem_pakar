@@ -13,29 +13,29 @@
                     <i class="uil uil-estate"></i>
                     <span class="link-name">Dahsboard</span>
                 </a></li>
-                <li><a href="/">
+                <li><a {{ Request::is("dashboard/diagnosa*") ? "class=active" : "" }} href="/dashboard/diagnosa/">
                     <i class="uil uil-stethoscope-alt"></i>
                     <span class="link-name">Diagnosa</span>
                 </a></li>
-                <li><a {{ Request::is("dashboard/posts*") ? "class=active" : "" }} href="/dashboard/posts/">
+                <li><a {{ Request::is("dashboard/riwayat*") ? "class=active" : "" }} href="/dashboard/riwayat/">
                     <i class="uil uil-clipboard-alt"></i>
                     <span class="link-name">Riwayat Diagnosa</span>
                 </a></li>
-                <li><a {{ Request::is("dashboard/categories*") ? "class=active" : "" }} href="/dashboard/categories/">
+                <li><a {{ Request::is("dashboard/pengguna*") ? "class=active" : "" }} href="/dashboard/pengguna/">
                     <i class="uil uil-users-alt"></i>
                     <span class="link-name">Daftar Pengguna</span>
                 </a></li>
-                <li><a {{ Request::is("dashboard/visi-misi*") ? "class=active" : "" }} href="/dashboard/visi-misi/edit">
+                <li><a {{ Request::is("dashboard/kecanduan*") ? "class=active" : "" }} href="/dashboard/kecanduan/">
                    <i class="uil uil-hospital"></i>
-                    <span class="link-name">Daftar Penyakit</span>
+                    <span class="link-name">Daftar Kecanduan</span>
                 </a></li>
-                <li><a {{ Request::is("dashboard/sambutan*") ? "class=active" : "" }} href="/dashboard/sambutan/edit">
+                <li><a {{ Request::is("dashboard/gejala*") ? "class=active" : "" }} href="/dashboard/gejala/">
                     <i class="uil uil-heartbeat"></i>
                     <span class="link-name">Daftar Gejala</span>
                 </a></li>
-                <li><a {{ Request::is("dashboard/kontak*") ? "class=active" : "" }} href="/dashboard/kontak/edit">
+                <li><a {{ Request::is("dashboard/basis-aturan*") ? "class=active" : "" }} href="/dashboard/basis-aturan/">
                     <i class="uil uil-syringe"></i>
-                    <span class="link-name">Basis Rules</span>
+                    <span class="link-name">Basis Aturan</span>
                 </a></li>
             </ul>
             <ul class="logout-mode" style="padding-left:0;">

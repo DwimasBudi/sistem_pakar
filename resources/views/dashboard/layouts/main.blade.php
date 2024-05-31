@@ -36,6 +36,60 @@
             width: 100%; /* Membuat lebar item dropdown sama dengan menu */
             box-sizing: border-box; /* Memastikan padding tidak mempengaruhi lebar total */
         }
+
+        @media (max-width: 768px) {
+            .user-name{
+                display: none
+            }
+        }
+
+        @media (max-width: 575.98px) {
+
+        }
+
+    </style>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 12px;
+        }
+
+        input[type="submit"] {
+            /* width: 100px; */
+            background-color: #4CAF50;
+            color: white;
+            margin-top:5px;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .diagnosa{
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
