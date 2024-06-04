@@ -5,40 +5,22 @@
 </div>
 <div class="col-lg-12">
     {{-- /dashboard/posts + method POST otomais ke method store --}}
-<form action="/dashboard/categories/{{ $category->slug }}" method="post" class="mb-5">
+<form action="/dashboard/kecanduan/{{ $kecanduan->id }}" method="post" class="mb-5">
     @method("put")
     @csrf
-    <div class="mb-3">
-      <label for="category" class="form-label">Category Lama</label>
-      <select class="form-select @error('category') is-invalid @enderror" name="category_id" id="category" required>
-          <option selected disabled>Pilih kategory</option>
-          @foreach ($categories as $cate)  
-              @if (old('category_id') == $cate->id)
-                  <option value="{{ $cate->id }}" selected>{{ $cate->name }}</option>
-              @else
-                  <option value="{{ $cate->id }}">{{ $cate->nama }}</option>
-              @endif
-          @endforeach
-      </select>
-      @error('category')
-          <div class="invalid-feedback">
-              {{$message}}
-          </div> 
-      @enderror
-    </div>
   <div class="mb-3">
-    <label for="title" class="form-label">Nama Category :</label>
-    <input type="text" name="name" class="form-control @error('title') is-invalid @enderror" id="title" placeholder="New Category Name" autofocus value="{{ old('title',$category->name) }}">
-    @error('title')
+    <label for="kode_kecanduan" class="form-label">Kode Kecanduan :</label>
+    <input type="text" name="kode_kecanduan" class="form-control @error('kode_kecanduan') is-invalid @enderror" id="kode_kecanduan" placeholder="Kode Kecanduan" autofocus value="{{ old('title',$kecanduan->kode_kecanduan) }}">
+    @error('kode_kecanduan')
         <div class="invalid-feedback">
             {{$message}}
         </div> 
     @enderror
   </div>
   <div class="mb-3">
-    <label for="slug" class="form-label">Slug :</label>
-    <input type="text" name="slug" class="form-control @error('slug') is-invalid @enderror" id="slug" placeholder="new-post-slug" value="{{ old('slug',$category->slug) }}">
-    @error('slug')
+    <label for="nama_kecanduan" class="form-label">Nama Kecanduan :</label>
+    <input type="text" name="nama_kecanduan" class="form-control @error('nama_kecanduan') is-invalid @enderror" id="nama_kecanduan" placeholder="Nama Kecanduan" value="{{ old('nama_kecanduan',$kecanduan->nama_kecanduan) }}">
+    @error('nama_kecanduan')
         <div class="invalid-feedback">
             {{$message}}
         </div> 

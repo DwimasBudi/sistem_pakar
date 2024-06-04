@@ -9,7 +9,7 @@
   {{ session('success') }}
 </div>
 @endif
-    <div class="table-responsive col-lg-12">
+<div class="table-responsive col-lg-12">
     <form id="form" action="/kirimcf" method="POST">
     @csrf
         <table class="diagnosa">
@@ -21,13 +21,9 @@
         @foreach ($gejala as $item)
         <tr>
             <td>{{ $loop->iteration }}</td>
-            <td>{{ $item->nama }} : </td>
+            <td>{{ $item->nama_gejala }} : </td>
             <td>
                 <select name="{{ $item->id }}" required>
-                    <option value="-1">Pasti Tidak</option>
-                    <option value="-0.8">Hampir Pasti Tidak</option>
-                    <option value="-0.6">Kemungkinan Besar Tidak</option>
-                    <option value="-0.4">Mungkin Tidak</option>
                     <option value="0" selected>Tidak Tahu</option>
                     <option value="0.2">Tidak Yakin</option>
                     <option value="0.4">Sedikit Yakin</option>
@@ -40,6 +36,6 @@
         @endforeach
         </table>
         <input type="submit" value="Diagnosa Sekarang">
-</form>
-    </div>
+        </form>
+</div>
 @endsection

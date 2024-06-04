@@ -22,7 +22,7 @@ class KecanduanController extends Controller
      */
     public function create()
     {
-        //
+        return view("dashboard.kecanduan.create", []);
     }
 
     /**
@@ -30,7 +30,14 @@ class KecanduanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'kode_kecanduan' => 'required|unique:kecanduans',
+            'nama_kecanduan' => 'required',
+
+        ]);
+
+        Kecanduan::create($validatedData);
+        return redirect('/dashboard/kecanduan')->with('success', 'Data Kecanduan ditambahkan');
     }
 
     /**
@@ -46,7 +53,9 @@ class KecanduanController extends Controller
      */
     public function edit(Kecanduan $kecanduan)
     {
-        //
+        return view("dashboard.kecanduan.edit", [
+            'kecanduan'=>$kecanduan,
+        ]);
     }
 
     /**
@@ -54,7 +63,17 @@ class KecanduanController extends Controller
      */
     public function update(Request $request, Kecanduan $kecanduan)
     {
-        //
+        $rules=[
+            'kode_kecanduan' => 'required',
+            'nama_kecanduan' => 'required',
+        ];
+        if ($request->kode_kecanduan !== $kecanduan->kode_kecanduan) {
+            $rules['kode_kecanduan'] = 'unique:kecanduans';
+        }
+        $validatedData = $request->validate($rules);
+        Kecanduan::where('id', $kecanduan->id)->update($validatedData);
+
+        return redirect('/dashboard/kecanduan')->with('success', 'Data Kecanduan diperbarui');
     }
 
     /**
@@ -62,6 +81,7 @@ class KecanduanController extends Controller
      */
     public function destroy(Kecanduan $kecanduan)
     {
-        //
+        Kecanduan::destroy($kecanduan->id);
+        return redirect('/dashboard/kecanduan')->with('success', 'kecanduan berhasil dihapus');
     }
 }

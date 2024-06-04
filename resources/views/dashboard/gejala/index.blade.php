@@ -24,11 +24,11 @@
           <tbody>
             @foreach ($gejalas as $gejala)
             <tr>
-              <td>{{ $gejala->kode  }}</td>
-              <td>{{ $gejala->nama}}</td>
+              <td>{{ $gejala->kode_gejala  }}</td>
+              <td>{{ $gejala->nama_gejala}}</td>
               <td style="width: 100px; ">
-                <a href="/dashboard/posts/{{ $gejala->id }}/edit" class="badge text-bg-warning"><i class="uil uil-edit"></i></a>
-                <form action="/dashboard/posts/{{ $gejala->id }}" method="post" class="d-inline">
+                <a href="/dashboard/gejala/{{ $gejala->id }}/edit" class="badge text-bg-warning"><i class="uil uil-edit"></i></a>
+                <form action="/dashboard/gejala/{{ $gejala->id }}" method="post" class="d-inline">
                   @method('delete')
                   @csrf
                   <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><i class="uil uil-times-circle"></i></button>

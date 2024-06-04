@@ -24,11 +24,11 @@
           <tbody>
             @foreach ($kecanduans as $kecanduan)
             <tr>
-              <td>{{ $kecanduan->kode  }}</td>
-              <td>{{ $kecanduan->nama}}</td>
+              <td>{{ $kecanduan->kode_kecanduan  }}</td>
+              <td>{{ $kecanduan->nama_kecanduan}}</td>
               <td style="width: 100px; ">
-                <a href="/dashboard/posts/{{ $kecanduan->id }}/edit" class="badge text-bg-warning"><i class="uil uil-edit"></i></a>
-                <form action="/dashboard/posts/{{ $kecanduan->id }}" method="post" class="d-inline">
+                <a href="/dashboard/kecanduan/{{ $kecanduan->id }}/edit" class="badge text-bg-warning"><i class="uil uil-edit"></i></a>
+                <form action="/dashboard/kecanduan/{{ $kecanduan->id }}" method="post" class="d-inline">
                   @method('delete')
                   @csrf
                   <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><i class="uil uil-times-circle"></i></button>

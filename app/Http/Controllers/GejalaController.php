@@ -22,7 +22,9 @@ class GejalaController extends Controller
      */
     public function create()
     {
-        //
+        return view("dashboard.gejala.create", [
+            
+        ]);
     }
 
     /**
@@ -30,7 +32,14 @@ class GejalaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'kode_gejala' => 'required',
+            'nama_gejala' => 'required',
+
+        ]);
+
+        Gejala::create($validatedData);
+        return redirect('/dashboard/gejala')->with('success', 'Data Gejala ditambahkan');
     }
 
     /**
@@ -46,7 +55,9 @@ class GejalaController extends Controller
      */
     public function edit(Gejala $gejala)
     {
-        //
+        return view("dashboard.gejala.edit", [
+            'gejala'=>$gejala,
+        ]);
     }
 
     /**
@@ -54,7 +65,17 @@ class GejalaController extends Controller
      */
     public function update(Request $request, Gejala $gejala)
     {
-        //
+        $rules = [
+            'kode_gejala' => 'required',
+            'nama_gejala' => 'required',
+        ];
+        if ($request->kode_gejala !== $gejala->kode_gejala) {
+            $rules['kode_gejala'] = 'unique:gejalas';
+        }
+        $validatedData = $request->validate($rules);
+        Gejala::where('id', $gejala->id)->update($validatedData);
+
+        return redirect('/dashboard/gejala')->with('success', 'Data Kecanduan diperbarui');
     }
 
     /**
@@ -62,6 +83,7 @@ class GejalaController extends Controller
      */
     public function destroy(Gejala $gejala)
     {
-        //
+        Gejala::destroy($gejala->id);
+        return redirect('/dashboard/gejala')->with('success', 'Data Gejala berhasil dihapus');
     }
 }

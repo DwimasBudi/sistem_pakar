@@ -1,51 +1,40 @@
 @extends('dashboard.layouts.main')
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-5 mt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Create Category</h1>
+    <h1 class="h2"><i class="uil uil-syringe"></i> Basis Aturan </h1>
 </div>
-<div class="col-lg-12">
-    {{-- /dashboard/posts + method POST otomais ke method store --}}
-<form action="/dashboard/categories/{{ $category->slug }}" method="post" class="mb-5">
-    @method("put")
+<div class="table-responsive col-lg-12">
+    <form id="form" action="/dashboard/basis-aturan" method="POST">
     @csrf
-    <div class="mb-3">
-      <label for="category" class="form-label">Category Lama</label>
-      <select class="form-select @error('category') is-invalid @enderror" name="category_id" id="category" required>
-          <option selected disabled>Pilih kategory</option>
-          @foreach ($categories as $cate)  
-              @if (old('category_id') == $cate->id)
-                  <option value="{{ $cate->id }}" selected>{{ $cate->name }}</option>
-              @else
-                  <option value="{{ $cate->id }}">{{ $cate->nama }}</option>
-              @endif
-          @endforeach
-      </select>
-      @error('category')
-          <div class="invalid-feedback">
-              {{$message}}
-          </div> 
-      @enderror
-    </div>
-  <div class="mb-3">
-    <label for="title" class="form-label">Nama Category :</label>
-    <input type="text" name="name" class="form-control @error('title') is-invalid @enderror" id="title" placeholder="New Category Name" autofocus value="{{ old('title',$category->name) }}">
-    @error('title')
-        <div class="invalid-feedback">
-            {{$message}}
-        </div> 
-    @enderror
-  </div>
-  <div class="mb-3">
-    <label for="slug" class="form-label">Slug :</label>
-    <input type="text" name="slug" class="form-control @error('slug') is-invalid @enderror" id="slug" placeholder="new-post-slug" value="{{ old('slug',$category->slug) }}">
-    @error('slug')
-        <div class="invalid-feedback">
-            {{$message}}
-        </div> 
-    @enderror
-  </div>
-
-  <button type="submit" class="btn btn-primary mt-3">Update Category</button>
-</form>
+        <table class="diagnosa">
+            <tr>
+            <th>No</th>
+            <th>Gejala</th>
+            <th>Nilai CF</th>
+        </tr>
+@foreach ($rules as $item)
+    <tr>
+        <td>{{ $loop->iteration }}</td>
+        <td>{{ $item->gejala->nama_gejala }} : </td>
+        <td>
+            <input name="{{ $item->gejala_id }}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 50%" value="{{ $item->value_cf }}">
+        </td>
+    </tr>
+    @if ($loop->last && !$gejalas->isEmpty())
+        @php $additional_index = $loop->count; @endphp
+        @foreach ($gejalas as $gejala)
+            <tr>
+                <td>{{ $loop->iteration + $additional_index }}</td>
+                <td>{{ $gejala->nama_gejala }} : </td>
+                <td>
+                    <input name="{{ $gejala->id }}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 50%">
+                </td>
+            </tr>
+        @endforeach
+    @endif
+@endforeach
+        </table>
+        <input type="submit" value="Simpan Rule">
+        </form>
 </div>
 @endsection

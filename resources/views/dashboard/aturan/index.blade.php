@@ -9,7 +9,25 @@
   {{ session('success') }}
 </div>
 @endif
-    <div class="table-responsive col-lg-12">
- 
-    </div>
+<div class="table-responsive col-lg-8">
+        <table class="diagnosa">
+        {{-- <tr>
+            <th>No</th>
+            <th>Gejala</th>
+            <th>Keyakinan</th>
+        </tr> --}}
+        @foreach ($kecanduan as $item)
+        <tr>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $item->nama_kecanduan }}</td>
+            <td>
+                {{-- <button>Basis Aturan</button> --}}
+                <a href="/dashboard/basis-aturan/data/{{ $item->id }}" type="button" class="btn btn-primary"><i class="uil uil-syringe"></i> Ubah Rule</a>
+
+                {{-- <input type="submit" value="Diagnosa Sekarang"> --}}
+            </td>
+        </tr>
+        @endforeach
+        </table>
+</div>
 @endsection
