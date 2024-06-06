@@ -36,20 +36,27 @@ class BasisAturanController extends Controller
     public function store(Request $request)
     {
         $kecanduanId = $request->route('kecanduan');
-        $rule = BasisAturan::orderBy('kecanduan_id')->where('kecanduan_id', 1);
-        $data= request()->except('_token');
-        $gejala = Gejala::whereNotIn('id', $rule->pluck('gejala_id'))->latest()->get();
+        $id = request()->only('id');
+        $rule = BasisAturan::orderBy('kecanduan_id')->where('kecanduan_id', $id);
+        $data = request()->except(['_token', 'id']);
+        // $data = request()->except('_token');
+        // $gejala = Gejala::whereNotIn('id', $rule->pluck('gejala_id'))->latest()->get();
+        // dd($data);
+        $idArray = request()->only('id');
+        $id = $idArray['id'];
+
+        BasisAturan::where('kecanduan_id', $id)->delete();
         foreach ($data as $key => $value) {
-            if ($rule->Where('gejala_id', $key)->first() && $value !== null) {
-                echo "hebat <br>";
+            // dd($id);
+            if ($value !== null ) {
+                BasisAturan::create([
+                    'kecanduan_id' => $id,
+                    'gejala_id' => $key,
+                    'value_cf' => $value
+                ]);
             }
-            // if ($rule->where('gejala_id', $key)->isEmpty() && $value != null) {
-            //     echo "Fix done good job";
-            //     echo $value;
-            //     echo "<br>";
-            // }
         }
-        // dd();
+        return redirect('/dashboard/basis-aturan/data/'.$id)->with('success', 'Rule Berhasil diperbarui');
     }
 
     /**

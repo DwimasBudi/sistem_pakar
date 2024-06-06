@@ -20,8 +20,10 @@ class RuleShowController extends Controller
         // dd($rule);
         return view('dashboard.aturan.edit', [
             'rules'=>$rule,
+            'id_kecanduan'=>$kecanduanId->id,
             'kecanduan' => $kecanduan,
             'gejalas' => $gejala
         ]);
+    
     }
 }

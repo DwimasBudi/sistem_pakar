@@ -3,8 +3,14 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-5 mt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2"><i class="uil uil-syringe"></i> Basis Aturan </h1>
 </div>
+@if (session()->has('success'))
+<div class="alert alert-success col-lg-10" role="alert">
+  {{ session('success') }}
+</div>
+@endif
 <div class="table-responsive col-lg-12">
     <form id="form" action="/dashboard/basis-aturan" method="POST">
+        <input type="hidden" name="id" value="{{ $id_kecanduan }}">
     @csrf
         <table class="diagnosa">
             <tr>
@@ -17,7 +23,7 @@
         <td>{{ $loop->iteration }}</td>
         <td>{{ $item->gejala->nama_gejala }} : </td>
         <td>
-            <input name="{{ $item->gejala_id }}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 50%" value="{{ $item->value_cf }}">
+            <input name="{{ $item->gejala_id }}" type="number" min="0" max="1" step="0.1" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 50%" value="{{ $item->value_cf }}" >
         </td>
     </tr>
     @if ($loop->last && !$gejalas->isEmpty())
