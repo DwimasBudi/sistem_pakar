@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\RiwayatDiagnosa;
+use Illuminate\Support\Facades\Auth;
 
 class RiwayatController extends Controller
 {
@@ -11,8 +13,14 @@ class RiwayatController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->level!=='admin') {
+            $riwayat = RiwayatDiagnosa::where('id_pengguna',Auth::user()->id)->with('user');
+        }else{
+            $riwayat = RiwayatDiagnosa::with('user');
+        }
+        // dd($riwayat->get());
         return view('dashboard.riwayat.index', [
-            // 'title' => 'Login',
+            'riwayats' => $riwayat->get(),
             // 'active' => 'Login'
         ]);
     }
@@ -38,7 +46,23 @@ class RiwayatController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $riwayat = RiwayatDiagnosa::with('user')->find($id);
+        if (Auth::user()->level!='admin') {
+            if (Auth::user()->id !== $riwayat->id_pengguna) {
+                return abort(403);
+            }
+        }
+
+        // dd($riwayat->gejala_pengguna);
+        // dd($unserializedData = unserialize($riwayat->gejala_pengguna));
+        
+        // dd($riwayat);
+        return view('dashboard.riwayat.show', compact('riwayat'));
+        // return view('dashboard.riwayat.show', [
+        //     'riwayat' => $riwayat,
+        // ]);
+        
+        // echo "hallo";
     }
 
     /**

@@ -10,6 +10,37 @@
 </div>
 @endif
     <div class="table-responsive col-lg-12">
- 
+        <table id="tabel-data" class="table table-striped table-bordered" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Nama</th>
+              <th scope="col">Tingkat Kecanduan</th>
+              <th scope="col">Tanggal</th>
+              <th scope="col">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($riwayats as $riwayat)
+            <tr>
+              <td>{{ $riwayat->id  }}</td>
+              <td>{{ $riwayat->user->nama}}</td>
+              <td>{{ $riwayat->tingkat_kecanduan}} ({{ $riwayat->value_cf*100 }}%)</td>
+              <td>{{ $riwayat->created_at}} </td>
+              <td style="width: 100px; ">
+                <a href="/dashboard/riwayat/{{ $riwayat->id }}" class="badge text-bg-success"><i class="uil uil-eye"></i></a>
+                <form action="/dashboard/gejala/{{ $riwayat->id }}" method="post" class="d-inline">
+                  @method('delete')
+                  @csrf
+                  <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><i class="uil uil-times-circle"></i></button>
+                   {{-- <a href="" class="badge text-bg-danger"></a> --}}
+                </form>
+              </td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
     </div>
 @endsection

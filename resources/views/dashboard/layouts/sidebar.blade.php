@@ -9,10 +9,12 @@
         </div>
         <div class="menu-items">
             <ul class="nav-links" style="padding-left:0;">
+                @can('admin')
                 <li><a {{ Request::is("dashboard") ? "class=active" : "" }} href="/dashboard/">
                     <i class="uil uil-estate"></i>
                     <span class="link-name">Dahsboard</span>
                 </a></li>
+                @endcan
                 <li><a {{ Request::is("dashboard/diagnosa*") ? "class=active" : "" }} href="/dashboard/diagnosa/">
                     <i class="uil uil-stethoscope-alt"></i>
                     <span class="link-name">Diagnosa</span>
@@ -21,6 +23,7 @@
                     <i class="uil uil-clipboard-alt"></i>
                     <span class="link-name">Riwayat Diagnosa</span>
                 </a></li>
+                @can('admin')
                 <li><a {{ Request::is("dashboard/pengguna*") ? "class=active" : "" }} href="/dashboard/pengguna/">
                     <i class="uil uil-users-alt"></i>
                     <span class="link-name">Daftar Pengguna</span>
@@ -37,6 +40,7 @@
                     <i class="uil uil-syringe"></i>
                     <span class="link-name">Basis Aturan</span>
                 </a></li>
+                @endcan
             </ul>
             <ul class="logout-mode" style="padding-left:0;">
                 <li>

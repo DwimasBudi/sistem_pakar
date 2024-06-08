@@ -33,7 +33,7 @@
                 <td>{{ $loop->iteration + $additional_index }}</td>
                 <td>{{ $gejala->nama_gejala }} : </td>
                 <td>
-                    <input name="{{ $gejala->id }}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 50%">
+                    <input name="{{ $gejala->id }}" type="number" min="0" max="1" step="0.1" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 50%">
                 </td>
             </tr>
         @endforeach

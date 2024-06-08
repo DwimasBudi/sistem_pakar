@@ -48,7 +48,7 @@ class BasisAturanController extends Controller
         BasisAturan::where('kecanduan_id', $id)->delete();
         foreach ($data as $key => $value) {
             // dd($id);
-            if ($value !== null ) {
+            if ($value !== null && $value>0) {
                 BasisAturan::create([
                     'kecanduan_id' => $id,
                     'gejala_id' => $key,

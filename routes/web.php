@@ -31,12 +31,21 @@ Route::get('/login', [LoginController::class, 'index'])->name('login')->middlewa
 Route::get('/dashboard/diagnosa', [DiagnosaController::class, 'index'])->middleware('auth');
 // Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 Route::resource('/dashboard/riwayat', RiwayatController::class)->middleware('auth');
-Route::resource('/dashboard/kecanduan', KecanduanController::class)->middleware('auth');
-Route::resource('/dashboard/gejala', GejalaController::class)->middleware('auth');
-Route::resource('/dashboard/basis-aturan', BasisAturanController::class)->middleware('auth');
-Route::resource('/dashboard/pengguna', PenggunaController::class)->middleware('auth');
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::resource('/dashboard/kecanduan', KecanduanController::class)->middleware('admin');
+Route::resource('/dashboard/gejala', GejalaController::class)->middleware('admin');
+Route::resource('/dashboard/basis-aturan', BasisAturanController::class)->middleware('admin');
+Route::resource('/dashboard/pengguna', PenggunaController::class)->middleware('admin');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('admin');
 Route::post('/login', [LoginController::class, 'authenticate']);
+Route::get('/register', [LoginController::class, 'register']);
+Route::post('/signup', [LoginController::class, 'signup']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::get('dashboard/basis-aturan/data/{kecanduan:id}', [RuleShowController::class, 'index']);
+
+Route::post('/kirimcf', [DiagnosaController::class, 'cfclean']);
+Route::get('/dashboard/hasil', function () {
+    return view('dashboard.diagnosa.hasil', [
+
+    ]);
+})->middleware('auth');

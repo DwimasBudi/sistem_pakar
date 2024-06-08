@@ -10,7 +10,7 @@ class Kecanduan extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    public function rule()
+    public function basisaturan()
     {
         return $this->hasMany(BasisAturan::class);
     }

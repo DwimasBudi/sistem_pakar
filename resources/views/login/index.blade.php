@@ -44,6 +44,11 @@
         @endif required>
         <input type="submit" class="button bg-primary" value="Login">
       </form>
+      <div class="signup">
+        <span class="signup">Don't have an account?
+         <a href="/register">Signup</a>
+        </span>
+      </div>
     </div>
   </div>
 </body>

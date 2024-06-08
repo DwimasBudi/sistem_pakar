@@ -15,7 +15,7 @@ class BasisAturan extends Model
     {
         return $this->belongsTo(Gejala::class);
     }
-    public function penyakit()
+    public function kecanduan()
     {
         return $this->belongsTo(Penyakit::class);
     }

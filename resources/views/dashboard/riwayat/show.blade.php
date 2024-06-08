@@ -1,0 +1,69 @@
+@extends('dashboard.layouts.main')
+@section('container')
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-5 mt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2"><i class="uil uil-stethoscope-alt"></i> Hasil Diagnosis</h1>
+</div>
+<div class="col-lg-12">
+
+                <a href="/admin/diagnosa" class="btn btn-primary mb-2"><i class="fas fa-file"></i> Diagnosa Baru</a>
+                <a href="/admin/pasien/cetak/" target="blank" class="btn btn-warning mb-2"><i class="fas fa-print"></i> Cetak</a>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <table class="table">
+                            <tr>
+                                <td width="200px">Nama Pasien</td>
+                                <td>: {{ $riwayat->user->nama }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>Umur</td>
+                                <td>: 12</td>
+                            </tr>
+
+                            <tr>
+                                <td>Tingkat Kecanduan </td>
+                                <td>: {{ $riwayat->tingkat_kecanduan }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>Keakuratan</td>
+                                <td>: {{ $riwayat->value_cf }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>Persentase</td>
+                                <td>: {{ $riwayat->value_cf * 100 . '%' }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>Saran</td>
+                                <td>: </td>
+                            </tr>
+
+                            <tr>
+                                <td>Dampak Tingkat Lanjut</td>
+                                <td>: </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col-md-6">
+                        <table class="table">
+                            <tr>
+                                <th>No</th>
+                                <th>Gejala</th>
+                            </tr>
+
+                            @foreach (unserialize($riwayat->gejala_pengguna) as $gejala)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $gejala }}</td>
+                                </tr>
+                                @endforeach
+
+                        </table>
+            </div>
+        </div>
+</div>
+@endsection
