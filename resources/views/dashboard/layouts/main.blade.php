@@ -18,7 +18,7 @@
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
     <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-    <title>Admin Dashboard Kauman</title>
+    <title>Sistem Pakar</title>
     <style>
         /* CSS untuk menghapus border ketika tombol diklik atau fokus */
         .dropdown-toggle:focus,

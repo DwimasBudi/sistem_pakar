@@ -20,6 +20,7 @@ class DiagnosaController extends Controller
             'rules' => $rule->orderBy('gejala_id')->get(),
             'kecanduan' => $kecanduan->get(),
             'gejala' => $gejala->orderBy('id')->get(),
+            // 'gejala' => $gejala->inRandomOrder(10)->get(),
         ]);
     }
     function cf(BasisAturan $rule, Kecanduan $penyakit, Gejala $gejala)
@@ -98,17 +99,17 @@ class DiagnosaController extends Controller
         echo '<br>';
         echo $namaPenyakit->nama_kecanduan;
     }
-    function cfclean(BasisAturan $rule, Kecanduan $penyakit, Gejala $gejala)
+    function cfclean(BasisAturan $rule, Kecanduan $kecanduan, Gejala $gejala)
     {
         $rules = $rule->orderBy('gejala_id')->get();
-        $penyakit = $penyakit->get();
+        $kecanduan = $kecanduan->get();
         $gejala = $gejala->get();
         $users = request()->except('_token');
         $hasil = [];
 
 
-        foreach ($penyakit as $key => $sakit) {
-            $i = $sakit->id;
+        foreach ($kecanduan as $key => $candu) {
+            $i = $candu->id;
             $idGejala = [];
             $CFG = [];
             $gejalaTuru = [];
@@ -123,7 +124,7 @@ class DiagnosaController extends Controller
                 $CFG[$key] = $users[$key] * $gejala;
             }
 
-            // memasukkan id gejala kedaalam $idgejala untuk satu persatu penyakit
+            // memasukkan id gejala kedaalam $idgejala untuk satu persatu kecanduan
             $rulex = $rules->where('kecanduan_id', $i);
             foreach ($rulex as $aturan) {
                 array_push($idGejala, $aturan->gejala_id);
@@ -142,7 +143,7 @@ class DiagnosaController extends Controller
         }
 
         $maxHasil = max($hasil);
-        $namaPenyakit = $penyakit->where('id', array_search($maxHasil, $hasil))->first();
+        $namaKecanduan = $kecanduan->where('id', array_search($maxHasil, $hasil))->first();
         // dd($users);
         
         $gejalaUser = [];
@@ -156,10 +157,12 @@ class DiagnosaController extends Controller
         }
         // dd($gejalaUser);
         // exit();
+        // dd($namaPenyakit->id,);
         $maxHasil = round($maxHasil, 2);
         RiwayatDiagnosa::create([
             'id_pengguna' => Auth::user()->id,
-            'tingkat_kecanduan' => $namaPenyakit->nama_kecanduan,
+            'id_kecanduan' => $namaKecanduan->id,
+            'tingkat_kecanduan' => $namaKecanduan->nama_kecanduan,
             'gejala_pengguna' => serialize($gejalaUser),
             'value_cf' => $maxHasil,
         ]);
@@ -167,7 +170,8 @@ class DiagnosaController extends Controller
         return view('dashboard.diagnosa.hasil', [
             'gejala'=> $gejalaUser,
             'hasil' => $maxHasil,
-            'kecanduan' => $namaPenyakit->nama_kecanduan,
+            'kecanduan' => $namaKecanduan->nama_kecanduan,
+            'saran' => $namaKecanduan->saran_kecanduan,
         ]);
     }
     /**

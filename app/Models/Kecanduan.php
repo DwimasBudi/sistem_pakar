@@ -14,4 +14,8 @@ class Kecanduan extends Model
     {
         return $this->hasMany(BasisAturan::class);
     }
+    public function riwayatdiagnosa()
+    {
+        return $this->hasMany(RiwayatDiagnosa::class);
+    }
 }

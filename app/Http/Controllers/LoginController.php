@@ -11,7 +11,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('login.index', [
+        return view('login.login', [
             // 'title' => 'Login',
             // 'active' => 'Login'
         ]);
@@ -48,26 +48,30 @@ class LoginController extends Controller
     }
     public function register(Request $request)
     {
-        return view('login.create', [
+        return view('login.signup', [
             // 'title' => 'Login',
             // 'active' => 'Login'
         ]);
     }
     public function signup(Request $request)
     {
-
+        // dd($request);
         $validatedData = $request->validate([
             'nama' => 'required',
             'username' => 'required|unique:users',
+            'jenis_kelamin' => 'required',
+            'umur' => 'required|Numeric',
             'password' => 'required|confirmed',
         ]);
 
         // dd($request->session()->get('errors'));
-
+        // dd($validatedData['umur']);
         $user = User::create([
             'nama' => $validatedData['nama'],
             'level' => 'user',
             'username' => $validatedData['username'],
+            'jenis_kelamin' => $validatedData['jenis_kelamin'],
+            'umur' => $validatedData['umur'],
             'password' => Hash::make($validatedData['password']),
         ]);
 

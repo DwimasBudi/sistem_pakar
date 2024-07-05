@@ -18,7 +18,8 @@ class BasisAturanController extends Controller
         
         
         return view("dashboard.aturan.index", [
-            'kecanduan' => Kecanduan::latest()->get(),
+            'kecanduan' => Kecanduan::orderBy('id')->get(),
+
         ]);
     }
 

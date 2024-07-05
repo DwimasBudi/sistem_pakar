@@ -24,6 +24,10 @@ class RiwayatDiagnosa extends Model
     {
         return $this->belongsTo(User::class, 'id_pengguna');
     }
+    public function kecanduan()
+    {
+        return $this->belongsTo(Kecanduan::class, 'id_kecanduan');
+    }
 
     
 }

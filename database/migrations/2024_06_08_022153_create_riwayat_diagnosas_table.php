@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('riwayat_diagnosas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_pengguna')->references('id')->on('users')->onDelete('cascade');
+            $table->string('id_kecanduan');
             $table->string('tingkat_kecanduan');
             $table->string('value_cf');
             $table->json('gejala_pengguna');

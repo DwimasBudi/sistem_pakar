@@ -20,7 +20,7 @@ class RiwayatController extends Controller
         }
         // dd($riwayat->get());
         return view('dashboard.riwayat.index', [
-            'riwayats' => $riwayat->get(),
+            'riwayats' => $riwayat->orderBy('id', 'desc')->get(),
             // 'active' => 'Login'
         ]);
     }
@@ -46,7 +46,8 @@ class RiwayatController extends Controller
      */
     public function show(string $id)
     {
-        $riwayat = RiwayatDiagnosa::with('user')->find($id);
+        $riwayat = RiwayatDiagnosa::with(['user', 'kecanduan'])->find($id);
+        // dd($riwayat);
         if (Auth::user()->level!='admin') {
             if (Auth::user()->id !== $riwayat->id_pengguna) {
                 return abort(403);

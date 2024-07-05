@@ -5,7 +5,7 @@
 </div>
 <div class="col-lg-12">
 
-                <a href="/admin/diagnosa" class="btn btn-primary mb-2"><i class="fas fa-file"></i> Diagnosa Baru</a>
+                <a href="/dashboard/diagnosa" class="btn btn-primary mb-2"><i class="fas fa-file"></i> Diagnosa Baru</a>
                 <a href="/admin/pasien/cetak/" target="blank" class="btn btn-warning mb-2"><i class="fas fa-print"></i> Cetak</a>
 
                 <div class="row">
@@ -16,10 +16,10 @@
                                 <td>: {{ auth()->user()->nama }}</td>
                             </tr>
 
-                            <tr>
+                            {{-- <tr>
                                 <td>Umur</td>
                                 <td>: 12</td>
-                            </tr>
+                            </tr> --}}
 
                             <tr>
                                 <td>Tingkat Kecanduan </td>
@@ -38,12 +38,7 @@
 
                             <tr>
                                 <td>Saran</td>
-                                <td>: </td>
-                            </tr>
-
-                            <tr>
-                                <td>Dampak Tingkat Lanjut</td>
-                                <td>: </td>
+                                <td>: {!! $saran !!}</td>
                             </tr>
                         </table>
                     </div>

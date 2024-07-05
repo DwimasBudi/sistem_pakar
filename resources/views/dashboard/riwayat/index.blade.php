@@ -13,8 +13,10 @@
         <table id="tabel-data" class="table table-striped table-bordered" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th scope="col">Id</th>
+              <th scope="col">No</th>
               <th scope="col">Nama</th>
+              <th scope="col">umur</th>
+              <th scope="col">Jenis Kelamin</th>
               <th scope="col">Tingkat Kecanduan</th>
               <th scope="col">Tanggal</th>
               <th scope="col">
@@ -25,8 +27,10 @@
           <tbody>
             @foreach ($riwayats as $riwayat)
             <tr>
-              <td>{{ $riwayat->id  }}</td>
+              <td>{{ $loop->iteration }}</td>
               <td>{{ $riwayat->user->nama}}</td>
+              <td>{{ $riwayat->user->umur}}</td>
+              <td>{{ $riwayat->user->jenis_kelamin}}</td>
               <td>{{ $riwayat->tingkat_kecanduan}} ({{ $riwayat->value_cf*100 }}%)</td>
               <td>{{ $riwayat->created_at}} </td>
               <td style="width: 100px; ">

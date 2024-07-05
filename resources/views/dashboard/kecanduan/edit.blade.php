@@ -1,7 +1,7 @@
 @extends('dashboard.layouts.main')
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-5 mt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Create Category</h1>
+    <h1 class="h2">Ubah Kecanduan</h1>
 </div>
 <div class="col-lg-12">
     {{-- /dashboard/posts + method POST otomais ke method store --}}
@@ -26,7 +26,17 @@
         </div> 
     @enderror
   </div>
-
+  <div class="mb-3 col-lg-6">
+    <label for="saran" class="form-label">saran</label>
+    @error('saran_kecanduan')
+        <p class="text-danger">
+            {{$message}}
+        </p> 
+    @enderror
+        <textarea name="saran_kecanduan" id="saran_kecanduan" cols="30" rows="20" required>
+            {{ old("saran_kecanduan",$kecanduan->saran_kecanduan) }}
+        </textarea>
+    </div>
   <button type="submit" class="btn btn-primary mt-3">Update Category</button>
 </form>
 </div>

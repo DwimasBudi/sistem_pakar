@@ -30,7 +30,7 @@
     <div class="login form">
       <div class="row">
         {{-- <img src="{{ asset('img/logo.png') }}" alt="logo-kauman" style="max-width: 120px; max-height: auto; object-fit:cover; margin:0 auto;"> --}}
-        <header>Admin Login</header>
+        <header>Login Sistem Pakar</header>
       </div>
       
       

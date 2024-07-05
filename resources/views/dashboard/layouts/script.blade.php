@@ -10,8 +10,10 @@
 tinymce.init({
   selector: 'textarea',
     plugins: 'advlist autolink lists link image charmap preview anchor pagebreak code searchreplace wordcount visualblocks visualchars fullscreen insertdatetime media nonbreaking save table directionality emoticons',
-    toolbar: 'undo redo | formatselect | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | link image media | code',
+    toolbar: 'undo redo | formatselect | bold italic underline strikethrough | bullist numlist outdent indent | forecolor backcolor | alignleft aligncenter alignright alignjustify  | removeformat | link image media | code',
     promotion: false,
+    
+    // resize: 'both'
     branding: false,
   /* enable title field in the Image dialog*/
   image_title: true,

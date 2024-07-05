@@ -23,7 +23,7 @@
         <td>{{ $loop->iteration }}</td>
         <td>{{ $item->gejala->nama_gejala }} : </td>
         <td>
-            <input name="{{ $item->gejala_id }}" type="number" min="0" max="1" step="0.1" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 50%" value="{{ $item->value_cf }}" >
+            <input name="{{ $item->gejala_id }}" type="number" min="0" max="1" step="0.1" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 100%" value="{{ $item->value_cf }}" >
         </td>
     </tr>
     @if ($loop->last && !$gejalas->isEmpty())
@@ -33,7 +33,7 @@
                 <td>{{ $loop->iteration + $additional_index }}</td>
                 <td>{{ $gejala->nama_gejala }} : </td>
                 <td>
-                    <input name="{{ $gejala->id }}" type="number" min="0" max="1" step="0.1" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 50%">
+                    <input name="{{ $gejala->id }}" type="number" min="0" max="1" step="0.1" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 100%">
                 </td>
             </tr>
         @endforeach

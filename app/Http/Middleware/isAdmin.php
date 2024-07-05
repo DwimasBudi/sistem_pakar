@@ -16,7 +16,7 @@ class isAdmin
     public function handle(Request $request, Closure $next): Response
     {
         if (auth()->guest() || auth()->user()->level !== 'admin') {
-            return abort(403);
+            return redirect()->intended('/dashboard/diagnosa');
         }
         return $next($request);
     }

@@ -5,7 +5,7 @@
                 <img src="img/1.png" alt="">
             </div> --}}
 
-            <span class="logo_name">Admin Pakar</span>
+            <span class="logo_name">Sistem Pakar</span>
         </div>
         <div class="menu-items">
             <ul class="nav-links" style="padding-left:0;">
@@ -24,10 +24,10 @@
                     <span class="link-name">Riwayat Diagnosa</span>
                 </a></li>
                 @can('admin')
-                <li><a {{ Request::is("dashboard/pengguna*") ? "class=active" : "" }} href="/dashboard/pengguna/">
+                {{-- <li><a {{ Request::is("dashboard/pengguna*") ? "class=active" : "" }} href="/dashboard/pengguna/">
                     <i class="uil uil-users-alt"></i>
                     <span class="link-name">Daftar Pengguna</span>
-                </a></li>
+                </a></li> --}}
                 <li><a {{ Request::is("dashboard/kecanduan*") ? "class=active" : "" }} href="/dashboard/kecanduan/">
                    <i class="uil uil-hospital"></i>
                     <span class="link-name">Daftar Kecanduan</span>

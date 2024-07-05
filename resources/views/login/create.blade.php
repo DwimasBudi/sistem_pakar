@@ -26,7 +26,7 @@
 
       <div class="row">
         {{-- <img src="{{ asset('img/logo.png') }}" alt="logo-kauman" style="max-width: 120px; max-height: auto; object-fit:cover; margin:0 auto;"> --}}
-        <header>Admin Login</header>
+        <header>Daftar Sistem Pakar</header>
       </div>
       <form action="/signup" method="POST">
         @csrf

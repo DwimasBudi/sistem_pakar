@@ -13,7 +13,7 @@ class KecanduanController extends Controller
     public function index()
     {
         return view('dashboard.kecanduan.index', [
-            'kecanduans' => Kecanduan::latest()->get()
+            'kecanduans' => Kecanduan::orderBy('id')->get(),
         ]);
     }
 

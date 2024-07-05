@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('kode_kecanduan');
             $table->string('nama_kecanduan');
+            $table->text('saran_kecanduan')->nullable();
             $table->timestamps();
         });
     }
