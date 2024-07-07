@@ -107,7 +107,7 @@ class DiagnosaController extends Controller
         $users = request()->except('_token');
         $hasil = [];
 
-
+        // dd($users);
         foreach ($kecanduan as $key => $candu) {
             $i = $candu->id;
             $idGejala = [];
@@ -159,14 +159,14 @@ class DiagnosaController extends Controller
         // exit();
         // dd($namaPenyakit->id,);
         $maxHasil = round($maxHasil, 2);
-        RiwayatDiagnosa::create([
+        $riwayatDiagnosa = RiwayatDiagnosa::create([
             'id_pengguna' => Auth::user()->id,
             'id_kecanduan' => $namaKecanduan->id,
             'tingkat_kecanduan' => $namaKecanduan->nama_kecanduan,
             'gejala_pengguna' => serialize($gejalaUser),
             'value_cf' => $maxHasil,
         ]);
-
+        dd($riwayatDiagnosa);
         return view('dashboard.diagnosa.hasil', [
             'gejala'=> $gejalaUser,
             'hasil' => $maxHasil,

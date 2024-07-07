@@ -8,6 +8,20 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="/assets/css/main.css" rel="stylesheet">
     <style>
         body,
         html {
@@ -16,14 +30,16 @@
             background-color: #f5f5f5;
             margin: 0;
         }
+
         .vh-100 {
-        height: 100vh;
-    }
+            height: 100vh;
+        }
+
         .container-fluid {
-            background-color: #ffffff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            padding: 20px;
+            /* background-color: #ffffff; */
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+            /* border-radius: 8px; */
+            /* padding: 20px; */
         }
 
         .bg-light {
@@ -92,87 +108,68 @@
         .main-content {
             padding-top: 0;
         }
-        .tanya{
+
+        .tanya {
             font-weight: 600;
+        }
+
+        .btn-group-toggle .btn {
+            margin-bottom: 10px;
         }
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-light mb-0">
-        <a class="navbar-brand text-primary" href="#">SMAS</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Beranda</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Diagnosis</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Riwayat Diagnosa</a>
-                </li>
-            </ul>
+    <header id="header" class="header d-flex align-items-center">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+            <a href="/" class="logo d-flex align-items-center me-auto">
+                <h1 class="sitename">SMAS</h1>
+            </a>
+
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="{{ asset('/#hero') }}" class="active">Home<br></a></li>
+                    @if(Auth::check())
+                        <!-- If the user is logged in, show the Diagnosa menu -->
+                        <li><a href="{{ asset('/#about') }}">Diagnosa</a></li>
+                        <li><a href="{{ asset('/#about') }}">Riwayat Diagnosa</a></li>
+                        <li><a href="{{ asset('/#about') }}">Profile</a></li>
+                    @else
+                        <!-- If the user is not logged in, show the Login button -->
+                        <li><a class="btn-getstarted flex-md-shrink-0" href="/login">Login</a></li>
+                    @endif
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
         </div>
-    </nav>
+    </header>
     <div class="container-fluid main-content vh-100">
         <div class="row vh-100">
             <!-- Main Content -->
             <div class="col-md-8 p-4 order-md-2">
-                {{-- <div class="row mb-4">
-                    <div class="nav-item custom-control custom-radio custom-control-inline">
-                        <a href="#" class="nav-link">
-                            <i class="uil uil-clipboard-alt"></i>
-                            <span>Riwayat Diagnosa</span>
-                        </a>
-                    </div>
-                    <div class="nav-item custom-control custom-radio custom-control-inline">
-                        <a href="#" class="nav-link">
-                            <i class="uil uil-stethoscope-alt"></i>
-                            <span>Diagnosa</span>
-                        </a>
-                    </div>
-                </div> --}}
-                {{-- <div class="progress mb-4">
-                    <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                </div> --}}
                 <h5>Dalam sebulan terakhir, seberapa sering kamu...</h5>
-                <form>
-                    @foreach ($gejala->take(4) as $item)
-                    <div class="form-group active">
+                <form id="gejalaForm" action="/kirimcf" method="POST">
+                    @foreach ($gejala as $index => $item)
+                    @csrf
+                    <div class="form-group active" id="question-{{ $index }}" style="display: {{ $index == 0 ? 'block' : 'none' }};">
                         <label class="tanya">{{ $item->nama_gejala }}</label>
-                        <div>
-                            <div class="custom-control custom-radio custom-control-inline m-3">
-                                <input type="radio" id="{{ $item->id }}" name="{{ $item->id }}" class="custom-control-input">
-                                <label class="custom-control-label" for="{{ $item->id }}" value="0">Tidak tahu</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline m-3">
-                                <input type="radio" id="{{ $item->id }}" name="{{ $item->id }}" class="custom-control-input">
-                                <label class="custom-control-label" for="{{ $item->id }}" value="0.4">Sedikit yakin</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline m-3">
-                                <input type="radio" id="{{ $item->id }}" name="{{ $item->id }}" class="custom-control-input">
-                                <label class="custom-control-label" for="" value="0.6">Cukup Yakin</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline m-3">
-                                <input type="radio" id="{{ $item->id }}" name="{{ $item->id }}" class="custom-control-input">
-                                <label class="custom-control-label" for="" value="0.8">Yakin</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline m-3">
-                                <input type="radio" id="{{ $item->id }}" name="{{ $item->id }}" class="custom-control-input" value="">
-                                <label class="custom-control-label" for="{{ $item->id }}" value="1">Sangat yakin</label>
-                            </div>
+                        <div class="btn-group btn-group-toggle d-flex flex-wrap" data-toggle="buttons">
+                            <label class="btn btn-outline-danger flex-fill">
+                                <input type="radio" id="tidak{{ $index }}" name="{{ $item->id }}" value="0" autocomplete="off" onchange="updateButton()"> Tidak
+                            </label>
+                            <label class="btn btn-outline-success flex-fill">
+                                <input type="radio" id="iya{{ $index }}" name="{{ $item->id }}" value="1" autocomplete="off" onchange="updateButton()"> Iya
+                            </label>
                         </div>
                     </div>
                     @endforeach
-                    <div class="btn-container">
-                        <button type="button" class="btn btn-outline-primary">Kembali</button>
-                        <button type="submit" class="btn btn-primary">Selanjutnya</button>
+
+                    <div class="cons" style="width: 100%; display:flex; justify-content:end">
+                        <div class="btn-container w-50">
+                            <button type="button" class="btn btn-outline-primary" id="prevBtn" onclick="prevQuestion()" disabled>Kembali</button>
+                            <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Selanjutnya</button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -181,19 +178,79 @@
                 <img src="/img/Picture2.png" alt="Logo" class="mb-4" style="width: 150px;">
                 <h2 class="text-primary">Cek Kecanduan Media Sosial</h2>
                 <p>Kecanduan media sosial dapat mempengaruhi siapa saja. Penyebabnya beragam, mulai dari kombinasi dari kepuasan instan melalui dopamin, ketakutan akan ketinggalan informasi (FOMO), dan pencarian validasi sosial yang terus-menerus. Ayo cek kondisi kecanduan media sosial mu sekarang!</p>
-                <!-- <h5>Keunggulan Fitur</h5>
-                <ul class="list-unstyled">
-                    <li class="mb-2"><span class="text-primary">&#10004;</span> Wawasan seputar stres berdasarkan level
-                        stres</li>
-                    <li><span class="text-primary">&#10004;</span> Akses cepat untuk berkonsultasi dengan dokter
-                        spesialis dan psikolog</li>
-                </ul> -->
             </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.
+
+2/js/bootstrap.min.js"></script>
+    <script>
+        let currentQuestionIndex = 0;
+        const formGroups = document.querySelectorAll('.form-group');
+        const totalQuestions = formGroups.length;
+
+        function showQuestion(index) {
+            formGroups.forEach((group, i) => {
+                group.style.display = i === index ? 'block' : 'none';
+            });
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < totalQuestions - 1) {
+                currentQuestionIndex++;
+                showQuestion(currentQuestionIndex);
+                updateButton();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion(currentQuestionIndex);
+                updateButton();
+            }
+        }
+
+        function updateButton() {
+            const prevButton = document.getElementById('prevBtn');
+            const nextButton = document.getElementById('nextBtn');
+            const currentQuestion = formGroups[currentQuestionIndex];
+            const radioButtons = currentQuestion.querySelectorAll('input[type="radio"]');
+
+            let isAnyChecked = false;
+            radioButtons.forEach((radio) => {
+                if (radio.checked) {
+                    isAnyChecked = true;
+                }
+            });
+
+            if (isAnyChecked) {
+                if (currentQuestionIndex === totalQuestions - 1) {
+                    nextButton.textContent = 'Submit';
+                    nextButton.setAttribute('type', 'submit');
+                    nextButton.removeAttribute('onclick');
+                } else {
+                    nextButton.textContent = 'Selanjutnya';
+                    nextButton.setAttribute('type', 'button');
+                    nextButton.setAttribute('onclick', 'nextQuestion()');
+                }
+                nextButton.removeAttribute('disabled');
+            } else {
+                nextButton.setAttribute('disabled', 'true');
+            }
+
+            if (currentQuestionIndex === 0) {
+                prevButton.setAttribute('disabled', 'true');
+            } else {
+                prevButton.removeAttribute('disabled');
+            }
+        }
+
+        showQuestion(currentQuestionIndex);
+        updateButton();
+    </script>
 </body>
 
 </html>

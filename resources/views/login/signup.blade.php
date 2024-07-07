@@ -12,10 +12,12 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
   <!-- Google Fonts Roboto -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <!-- MDB -->
   <link rel="stylesheet" href="css/bootstrap-login-form.min.css" />
 
-    <!-- Fonts -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -181,14 +183,26 @@
 
             // Cek apakah umur lebih dari 25 atau kurang dari 10
             if (umur > 25 || umur < 10) {
-                // Tampilkan konfirmasi
-                const konfirmasi = confirm('Sistem pakar ini digunakan untuk umur remaja 12-25 tahun. Apakah Anda yakin ingin melanjutkan?');
-                // Jika pengguna menekan 'Batal', batalkan pengiriman form
-                if (!konfirmasi) {
-                    event.preventDefault();
-                }
+                // Mencegah pengiriman form
+                event.preventDefault();
+
+                // Tampilkan konfirmasi menggunakan SweetAlert
+                Swal.fire({
+                    title: 'Konfirmasi',
+                    text: 'Sistem pakar ini diperuntukan untuk umur antara 10 dan 25 tahun. Apakah Anda yakin ingin melanjutkan?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'OK',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika pengguna menekan 'OK', kirim form secara manual
+                        form.submit();
+                    }
+                });
             }
         });
+
 </script>
 <script src="assets/js/main.js"></script>
 </body>
