@@ -6,7 +6,7 @@
 <div class="col-lg-12">
 
                 <a href="/dashboard/diagnosa" class="btn btn-primary mb-2"><i class="fas fa-file"></i> Diagnosa Baru</a>
-                <a href="/admin/pasien/cetak/" target="blank" class="btn btn-warning mb-2"><i class="fas fa-print"></i> Cetak</a>
+                <a href="/dashboard/cetak/" target="blank" class="btn btn-warning mb-2"><i class="fas fa-print"></i> Cetak</a>
 
                 <div class="row">
                     <div class="col-md-6">

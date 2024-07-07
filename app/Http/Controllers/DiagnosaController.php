@@ -152,7 +152,8 @@ class DiagnosaController extends Controller
                 $nGejala = Gejala::firstWhere('id', $key);
                 // dd($nGejala);
                 // echo $value;
-                array_push($gejalaUser, $nGejala->nama_gejala . ' (' . $value . ')');
+                // array_push($gejalaUser, $nGejala->nama_gejala . ' (' . $value . ')');
+                array_push($gejalaUser, $nGejala->nama_gejala);
             }
         }
         // dd($gejalaUser);
@@ -166,8 +167,8 @@ class DiagnosaController extends Controller
             'gejala_pengguna' => serialize($gejalaUser),
             'value_cf' => $maxHasil,
         ]);
-        dd($riwayatDiagnosa);
-        return view('dashboard.diagnosa.hasil', [
+        // dd($riwayatDiagnosa);
+        return view('dashboard.user.hasil', [
             'gejala'=> $gejalaUser,
             'hasil' => $maxHasil,
             'kecanduan' => $namaKecanduan->nama_kecanduan,

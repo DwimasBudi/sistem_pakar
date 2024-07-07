@@ -57,7 +57,15 @@ Route::get('/dashboard/diagnosa2', function (BasisAturan $rule, Kecanduan $kecan
     return view('dashboard.user.index', [
         'rules' => $rule->orderBy('gejala_id')->get(),
         'kecanduan' => $kecanduan->get(),
-        'gejala' => $gejala->orderBy('id', 'desc')->get(),
+        'gejala' => $gejala->orderBy('id', 'asc')->get(),
+        // 'gejala' => $gejala->inRandomOrder(10)->get(),
+    ]);
+})->middleware('auth');
+Route::get('/dashboard/cetak', function (BasisAturan $rule, Kecanduan $kecanduan, Gejala $gejala) {
+    return view('dashboard.user.cetak', [
+        'rules' => $rule->orderBy('gejala_id')->get(),
+        'kecanduan' => $kecanduan->get(),
+        'gejala' => $gejala->orderBy('id', 'asc')->get(),
         // 'gejala' => $gejala->inRandomOrder(10)->get(),
     ]);
 })->middleware('auth');

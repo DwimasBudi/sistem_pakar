@@ -147,31 +147,78 @@
     <div class="container-fluid main-content vh-100">
         <div class="row vh-100">
             <!-- Main Content -->
-            <div class="col-md-8 p-4 order-md-2">
-                <h6>Dalam sebulan terakhir, seberapa sering kamu...</h6>
-                <form id="gejalaForm" action="/kirimcf" method="POST">
-                    @foreach ($gejala as $index => $item)
-                    @csrf
-                    <div class="form-group active" id="question-{{ $index }}" style="display: {{ $index == 0 ? 'block' : 'none' }};">
-                        <label class="tanya">{{ $item->nama_gejala }}</label>
-                        <div class="btn-group btn-group-toggle d-flex flex-wrap" data-toggle="buttons">
-                            <label class="btn btn-outline-danger flex-fill">
-                                <input type="radio" id="tidak{{ $index }}" name="{{ $item->id }}" value="0" autocomplete="off" onchange="updateButton()"> Tidak
-                            </label>
-                            <label class="btn btn-outline-success flex-fill">
-                                <input type="radio" id="iya{{ $index }}" name="{{ $item->id }}" value="1" autocomplete="off" onchange="updateButton()"> Iya
-                            </label>
-                        </div>
-                    </div>
-                    @endforeach
+            <div class="col-md-8 px-4 order-md-2">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2"><i class="uil uil-stethoscope-alt"></i> Hasil Diagnosis</h1>
+                </div>
+                <div class="col-lg-12">
 
-                    <div class="cons" style="width: 100%; display:flex; justify-content:end">
-                        <div class="btn-container w-50">
-                            <button type="button" class="btn btn-outline-primary" id="prevBtn" onclick="prevQuestion()" disabled>Kembali</button>
-                            <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Selanjutnya</button>
+                                <a href="/dashboard/diagnosa2" class="btn btn-primary mb-2"><i class="fas fa-file"></i> Diagnosa Baru</a>
+                                <a href="/dashboard/cetak/" target="blank" class="btn btn-warning mb-2"><i class="fas fa-print"></i> Cetak</a>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <table class="table">
+                                            <tr>
+                                                <td width="200px">Nama </td>
+                                                <td>: {{ auth()->user()->nama }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="200px">Jenis Kelamin</td>
+                                                <td>: {{ auth()->user()->jenis_kelamin }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="200px">Umur</td>
+                                                <td>: {{ auth()->user()->umur }}</td>
+                                            </tr>
+
+                                            {{-- <tr>
+                                                <td>Umur</td>
+                                                <td>: 12</td>
+                                            </tr> --}}
+
+                                            <tr>
+                                                <td>Tingkat Kecanduan </td>
+                                                <td>: {{ $kecanduan }}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>Keakuratan</td>
+                                                <td>: {{ $hasil }}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>Persentase</td>
+                                                <td>: {{ $hasil * 100 . '%' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">saran : {!! $saran !!}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <table class="table">
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Gejala Dialami</th>
+                                            </tr>
+
+                                            @foreach ($gejala as $item => $value)
+                                                
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $value }}</td>
+                                            </tr>
+                
+
+
+                                            @endforeach
+
+                                        </table>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                </div>
             </div>
             <!-- Left Sidebar -->
             <div class="col-md-4 bg-light p-4 order-md-1">
