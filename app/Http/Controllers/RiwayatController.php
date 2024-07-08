@@ -19,10 +19,18 @@ class RiwayatController extends Controller
             $riwayat = RiwayatDiagnosa::with('user');
         }
         // dd($riwayat->get());
-        return view('dashboard.riwayat.index', [
-            'riwayats' => $riwayat->orderBy('id', 'desc')->get(),
-            // 'active' => 'Login'
-        ]);
+        if (auth()->user()->level == 'admin') {
+            return view('dashboard.riwayat.index', [
+                'riwayats' => $riwayat->orderBy('id', 'desc')->get(),
+                // 'active' => 'Login'
+            ]);
+        } else {
+            return view('dashboard.user.riwayat', [
+                'riwayats' => $riwayat->orderBy('id', 'desc')->get(),
+                // 'active' => 'Login'
+            ]);
+        }
+        
     }
 
     /**
@@ -58,7 +66,12 @@ class RiwayatController extends Controller
         // dd($unserializedData = unserialize($riwayat->gejala_pengguna));
         
         // dd($riwayat);
-        return view('dashboard.riwayat.show', compact('riwayat'));
+        
+        if (auth()->user()->level == 'admin') {
+            return view('dashboard.riwayat.show', compact('riwayat'));
+        } else {
+            return view('dashboard.user.hasil', compact('riwayat'));
+        }
         // return view('dashboard.riwayat.show', [
         //     'riwayat' => $riwayat,
         // ]);

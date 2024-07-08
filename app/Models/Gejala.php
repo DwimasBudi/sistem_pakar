@@ -14,4 +14,5 @@ class Gejala extends Model
     {
         return $this->hasMany(BasisAturan::class);
     }
+    
 }

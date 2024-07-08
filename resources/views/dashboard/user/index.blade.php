@@ -132,14 +132,20 @@
                     <li><a href="{{ asset('/#hero') }}" class="active">Home<br></a></li>
                     @if(Auth::check())
                         <!-- If the user is logged in, show the Diagnosa menu -->
-                        <li><a href="{{ asset('/#about') }}">Diagnosa</a></li>
-                        <li><a href="{{ asset('/#about') }}">Riwayat Diagnosa</a></li>
-                        <li><a href="{{ asset('/#about') }}">Profile</a></li>
+                        <li><a href="{{ asset('/dashboard/diagnosa') }}">Diagnosa</a></li>
+                        <li><a href="{{ asset('/dashboard/riwayat') }}">Riwayat Diagnosa</a></li>
+                        <li class="dropdown"><a href="#"><span>{{ auth()->user()->nama }}</span>  <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                            <ul>
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="{{ asset('/logout') }}">Log Out</a></li>
+                            </ul>
+                        </li>
+                        
                     @else
                         <!-- If the user is not logged in, show the Login button -->
                         <li><a class="btn-getstarted flex-md-shrink-0" href="/login">Login</a></li>
                     @endif
-                </ul>
+                </ul> 
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
         </div>

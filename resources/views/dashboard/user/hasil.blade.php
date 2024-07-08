@@ -132,9 +132,9 @@
                     <li><a href="{{ asset('/#hero') }}" class="active">Home<br></a></li>
                     @if(Auth::check())
                         <!-- If the user is logged in, show the Diagnosa menu -->
-                        <li><a href="{{ asset('/#about') }}">Diagnosa</a></li>
-                        <li><a href="{{ asset('/#about') }}">Riwayat Diagnosa</a></li>
-                        <li><a href="{{ asset('/#about') }}">Profile</a></li>
+                        <li><a href="{{ asset('/dashboard/diagnosa') }}">Diagnosa</a></li>
+                        <li><a href="{{ asset('/dashboard/riwayat') }}">Riwayat Diagnosa</a></li>
+                        <li><a href="{{ asset('/logout') }}">Log Out</a></li>
                     @else
                         <!-- If the user is not logged in, show the Login button -->
                         <li><a class="btn-getstarted flex-md-shrink-0" href="/login">Login</a></li>
@@ -153,23 +153,23 @@
                 </div>
                 <div class="col-lg-12">
 
-                                <a href="/dashboard/diagnosa2" class="btn btn-primary mb-2"><i class="fas fa-file"></i> Diagnosa Baru</a>
-                                <a href="/dashboard/cetak/" target="blank" class="btn btn-warning mb-2"><i class="fas fa-print"></i> Cetak</a>
+                                <a href="/dashboard/diagnosa" class="btn btn-primary mb-2"><i class="fas fa-file"></i> Diagnosa Baru</a>
+                                <a href="/dashboard/cetak/{{ $riwayat->id }}" target="blank" class="btn btn-warning mb-2"><i class="fas fa-print"></i> Cetak</a>
 
                                 <div class="row">
                                     <div class="col-md-6">
                                         <table class="table">
                                             <tr>
                                                 <td width="200px">Nama </td>
-                                                <td>: {{ auth()->user()->nama }}</td>
+                                                <td>: {{ $riwayat->user->nama }}</td>
                                             </tr>
                                             <tr>
                                                 <td width="200px">Jenis Kelamin</td>
-                                                <td>: {{ auth()->user()->jenis_kelamin }}</td>
+                                                <td>: {{ $riwayat->user->jenis_kelamin }}</td>
                                             </tr>
                                             <tr>
                                                 <td width="200px">Umur</td>
-                                                <td>: {{ auth()->user()->umur }}</td>
+                                                <td>: {{  $riwayat->user->umur }}</td>
                                             </tr>
 
                                             {{-- <tr>
@@ -179,20 +179,20 @@
 
                                             <tr>
                                                 <td>Tingkat Kecanduan </td>
-                                                <td>: {{ $kecanduan }}</td>
+                                                <td>: {{ $riwayat->tingkat_kecanduan }}</td>
                                             </tr>
-
+{{-- 
                                             <tr>
                                                 <td>Keakuratan</td>
-                                                <td>: {{ $hasil }}</td>
+                                                <td>: {{ $riwayat->value_cf }}</td>
                                             </tr>
 
                                             <tr>
                                                 <td>Persentase</td>
-                                                <td>: {{ $hasil * 100 . '%' }}</td>
-                                            </tr>
+                                                <td>: {{ $riwayat->value_cf * 100 . '%' }}</td>
+                                            </tr> --}}
                                             <tr>
-                                                <td colspan="2">saran : {!! $saran !!}</td>
+                                                <td colspan="2">saran : {!! $riwayat->kecanduan->saran_kecanduan !!}</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -204,15 +204,11 @@
                                                 <th>Gejala Dialami</th>
                                             </tr>
 
-                                            @foreach ($gejala as $item => $value)
-                                                
-                                            <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $value }}</td>
-                                            </tr>
-                
-
-
+                                            @foreach (unserialize($riwayat->gejala_pengguna) as $gejala)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $gejala }}</td>
+                                                </tr>
                                             @endforeach
 
                                         </table>

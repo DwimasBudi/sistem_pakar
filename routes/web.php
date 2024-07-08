@@ -2,7 +2,11 @@
 
 use App\Models\Gejala;
 use App\Models\Kecanduan;
+
+// use PDF;
 use App\Models\BasisAturan;
+use App\Models\RiwayatDiagnosa;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\GejalaController;
@@ -14,7 +18,7 @@ use App\Http\Controllers\RuleShowController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KecanduanController;
 use App\Http\Controllers\BasisAturanController;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -61,11 +65,24 @@ Route::get('/dashboard/diagnosa2', function (BasisAturan $rule, Kecanduan $kecan
         // 'gejala' => $gejala->inRandomOrder(10)->get(),
     ]);
 })->middleware('auth');
-Route::get('/dashboard/cetak', function (BasisAturan $rule, Kecanduan $kecanduan, Gejala $gejala) {
-    return view('dashboard.user.cetak', [
-        'rules' => $rule->orderBy('gejala_id')->get(),
-        'kecanduan' => $kecanduan->get(),
-        'gejala' => $gejala->orderBy('id', 'asc')->get(),
-        // 'gejala' => $gejala->inRandomOrder(10)->get(),
-    ]);
+// Route::get('/dashboard/cetak', function (BasisAturan $rule, Kecanduan $kecanduan, Gejala $gejala) {
+//     return view('dashboard.user.cetak', [
+//         'rules' => $rule->orderBy('gejala_id')->get(),
+//         'kecanduan' => $kecanduan->get(),
+//         'gejala' => $gejala->orderBy('id', 'asc')->get(),
+//         // 'gejala' => $gejala->inRandomOrder(10)->get(),
+//     ]);
+// })->middleware('auth');
+
+Route::get('/dashboard/cetak/{id}', function ($id) {
+    $riwayat = RiwayatDiagnosa::with(['user', 'kecanduan'])->find($id);
+    if (Auth::user()->level != 'admin') {
+        if (Auth::user()->id !== $riwayat->id_pengguna) {
+            return abort(403);
+        }
+    }
+    
+    return View('dashboard.user.cetak', compact('riwayat'));
+
+
 })->middleware('auth');

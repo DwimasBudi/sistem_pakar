@@ -51,7 +51,12 @@
         <ul>
           <li><a href="{{ asset('/#hero') }}" class="active">Home<br></a></li>
           <li><a href="{{ asset('/#about') }}">About</a></li>
-          <a class="btn-getstarted flex-md-shrink-0" href="/login">Login</a>
+          @if(Auth::check())
+              <a class="btn-getstarted flex-md-shrink-0" href="/login">Beranda</a>
+          @else
+              <a class="btn-getstarted flex-md-shrink-0" href="/login">Login</a>
+          @endif
+          
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>

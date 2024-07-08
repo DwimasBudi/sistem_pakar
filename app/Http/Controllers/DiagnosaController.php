@@ -16,12 +16,21 @@ class DiagnosaController extends Controller
      */
     public function index(BasisAturan $rule, Kecanduan $kecanduan, Gejala $gejala)
     {
-        return view('dashboard.diagnosa.index', [
-            'rules' => $rule->orderBy('gejala_id')->get(),
-            'kecanduan' => $kecanduan->get(),
-            'gejala' => $gejala->orderBy('id')->get(),
-            // 'gejala' => $gejala->inRandomOrder(10)->get(),
-        ]);
+        if (auth()->user()->level == 'admin') {
+            return view('dashboard.diagnosa.index', [
+                'rules' => $rule->orderBy('gejala_id')->get(),
+                'kecanduan' => $kecanduan->get(),
+                'gejala' => $gejala->orderBy('id')->get(),
+                // 'gejala' => $gejala->inRandomOrder(10)->get(),
+            ]);
+        } else {
+            return view('dashboard.user.index', [
+                'rules' => $rule->orderBy('gejala_id')->get(),
+                'kecanduan' => $kecanduan->get(),
+                'gejala' => $gejala->orderBy('id')->get(),
+                // 'gejala' => $gejala->inRandomOrder(10)->get(),
+            ]);
+        }
     }
     function cf(BasisAturan $rule, Kecanduan $penyakit, Gejala $gejala)
     {
@@ -168,12 +177,15 @@ class DiagnosaController extends Controller
             'value_cf' => $maxHasil,
         ]);
         // dd($riwayatDiagnosa);
-        return view('dashboard.user.hasil', [
-            'gejala'=> $gejalaUser,
-            'hasil' => $maxHasil,
-            'kecanduan' => $namaKecanduan->nama_kecanduan,
-            'saran' => $namaKecanduan->saran_kecanduan,
-        ]);
+        return redirect('/dashboard/riwayat/' . $riwayatDiagnosa->id);
+
+        // return view('dashboard.user.hasil', [
+        //     'gejala'=> $gejalaUser,
+        //     'hasil' => $maxHasil,
+        //     'kecanduan' => $namaKecanduan->nama_kecanduan,
+        //     'saran' => $namaKecanduan->saran_kecanduan,
+        //     'cetak_id'=> $riwayatDiagnosa->id
+        // ]);
     }
     /**
      * Show the form for creating a new resource.
