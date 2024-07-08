@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
 
         // Kecanduan
         Kecanduan::create([
-            'kode_kecanduan' => 'P01',
+            'kode_kecanduan' => 'K01',
             'nama_kecanduan' => 'Kecanduan Ringan',
             'saran_kecanduan' => '<ul>
                 <li>Tetapkan batas waktu harian untuk penggunaan media sosial, misalnya tidak lebih dari 3 jam per hari.</li>
@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
             </ul>',
         ]);
         Kecanduan::create([
-            'kode_kecanduan' => 'P02',
+            'kode_kecanduan' => 'K02',
             'nama_kecanduan' => 'Kecanduan Sedang',
             'saran_kecanduan' => '<ul>
                 <li>Cari hobi atau aktivitas offline yang bisa menggantikan waktu yang biasanya dihabiskan di media sosial.</li>
@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
             </ul>',
         ]);
         Kecanduan::create([
-            'kode_kecanduan' => 'P03',
+            'kode_kecanduan' => 'K03',
             'nama_kecanduan' => 'Kecanduan Berat',
             'saran_kecanduan' => '<ul>
                 <li>Buat jadwal harian yang terstruktur yang mencakup waktu untuk pekerjaan, kegiatan sosial, dan hobi offline.</li>

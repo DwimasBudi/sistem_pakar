@@ -150,7 +150,7 @@
             </nav>
         </div>
     </header>
-    <div class="container-fluid main-content vh-100">
+    <div class="container-fluid main-content vh-100" >
         <div class="row vh-100">
             <!-- Main Content -->
             <div class="col-md-8 p-4 order-md-2">

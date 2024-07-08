@@ -13,14 +13,16 @@
         <input type="hidden" name="id" value="{{ $id_kecanduan }}">
     @csrf
         <table class="diagnosa">
-            <tr>
+        <tr>
             <th>No</th>
+            <th>Kode</th>
             <th>Gejala</th>
             <th>Nilai CF</th>
         </tr>
 @foreach ($rules as $item)
     <tr>
         <td>{{ $loop->iteration }}</td>
+        <td>{{ $item->gejala->kode_gejala }}</td>
         <td>{{ $item->gejala->nama_gejala }} : </td>
         <td>
             <input name="{{ $item->gejala_id }}" type="number" min="0" max="1" step="0.1" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 100%" value="{{ $item->value_cf }}" >
@@ -31,6 +33,7 @@
         @foreach ($gejalas as $gejala)
             <tr>
                 <td>{{ $loop->iteration + $additional_index }}</td>
+                <td>{{ $gejala->kode_gejala }}</td>
                 <td>{{ $gejala->nama_gejala }} : </td>
                 <td>
                     <input name="{{ $gejala->id }}" type="number" min="0" max="1" step="0.1" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 100%">

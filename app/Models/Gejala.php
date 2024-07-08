@@ -14,5 +14,9 @@ class Gejala extends Model
     {
         return $this->hasMany(BasisAturan::class);
     }
-    
+    public function kecanduans()
+    {
+        return $this->belongsToMany(Kecanduan::class, 'basis_aturans', 'gejala_id', 'kecanduan_id')
+        ->withPivot('value_cf');
+    }
 }

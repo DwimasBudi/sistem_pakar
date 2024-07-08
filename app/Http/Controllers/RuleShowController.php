@@ -13,7 +13,7 @@ class RuleShowController extends Controller
         $kecanduanId = $request->route('kecanduan');
         $rules = BasisAturan::orderBy('kecanduan_id')->get();
         $rule = $rules->where('kecanduan_id', $kecanduanId->id);
-        $gejala = Gejala::whereNotIn('id', $rule->pluck('gejala_id'))->latest()->get();
+        $gejala = Gejala::whereNotIn('id', $rule->pluck('gejala_id'))->orderBy('id')->get();
         // dd($rules);
         // dd($gejala);
         // dd($kecanduanId->id);

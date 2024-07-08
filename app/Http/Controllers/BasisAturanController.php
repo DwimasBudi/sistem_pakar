@@ -15,12 +15,15 @@ class BasisAturanController extends Controller
      */
     public function index()
     {
-        
-        
-        return view("dashboard.aturan.index", [
-            'kecanduan' => Kecanduan::orderBy('id')->get(),
 
-        ]);
+        $gejalas = Gejala::with('kecanduans')->get();
+        $kecanduans = Kecanduan::all();
+
+        return view('dashboard.aturan.index', compact('gejalas', 'kecanduans'));
+        // return view("dashboard.aturan.index", [
+        //     'kecanduan' => Kecanduan::orderBy('id')->get(),
+
+        // ]);
     }
 
     /**

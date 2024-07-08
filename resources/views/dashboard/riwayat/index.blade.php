@@ -32,7 +32,7 @@
               <td>{{ $riwayat->user->umur}}</td>
               <td>{{ $riwayat->user->jenis_kelamin}}</td>
               <td>{{ $riwayat->tingkat_kecanduan}} ({{ $riwayat->value_cf*100 }}%)</td>
-              <td>{{ $riwayat->created_at}} </td>
+              <td>{{ \Carbon\Carbon::parse($riwayat->created_at)->format('d M Y')}} </td>
               <td style="width: 100px; ">
                 <a href="/dashboard/riwayat/{{ $riwayat->id }}" class="badge text-bg-success"><i class="uil uil-eye"></i></a>
                 <form action="/dashboard/gejala/{{ $riwayat->id }}" method="post" class="d-inline">

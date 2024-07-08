@@ -18,4 +18,9 @@ class Kecanduan extends Model
     {
         return $this->hasMany(RiwayatDiagnosa::class);
     }
+    public function gejalas()
+    {
+        return $this->belongsToMany(Gejala::class, 'basis_aturans', 'kecanduan_id', 'gejala_id')
+        ->withPivot('value_cf');
+    }
 }
