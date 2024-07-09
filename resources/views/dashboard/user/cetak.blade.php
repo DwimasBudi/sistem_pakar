@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perhitungan Level Stres</title>
+    <title>Perhitungan Kecanduan Sosmed</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .stress-level {
@@ -113,7 +113,7 @@
 
         pdf.html(document.body, {
             callback: function (pdf) {
-                pdf.save('perhitungan_level_stres.pdf');
+                pdf.save('perhitungan_kecanduan_sosmed.pdf');
                 if (referrer) {
                     window.location.href = referrer;  
                 }
