@@ -21,7 +21,7 @@
                             </tr>
                             <tr>
                                 <td width="200px">Umur</td>
-                                <td>: {{ $riwayat->user->umur }}</td>
+                                <td>: {{ $riwayat->user->tanggal_lahir }}</td>
                             </tr>
 
                             {{-- <tr>

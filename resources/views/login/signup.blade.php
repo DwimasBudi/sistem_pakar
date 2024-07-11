@@ -13,7 +13,10 @@
   <!-- Google Fonts Roboto -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+  <!-- jQuery and jQuery UI -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
   <!-- MDB -->
   <link rel="stylesheet" href="css/bootstrap-login-form.min.css" />
 
@@ -127,8 +130,9 @@
                     </div> 
                     @enderror
                     <div class="form-outline mb-4">
-                      <input type="number" id="umur" name="umur" value="{{ old('umur') }}" class="form-control form-control-lg" />
-                      <label class="form-label" for="umur">Umur</label>
+                      {{-- <input type="text" id="datepicker" name="umur" value="{{ old('umur') }}" class="form-control form-control-lg" /> --}}
+                      <input type="date" name="tanggal_lahir" class="form-control form-control-lg" min="1999-01-01" max="2012-01-01" placeholder="dd-mm-yyyy">
+                      <label class="form-label" for="tanggal_lahir">Tanggal Lahir</label>
                     </div>
 
                     @error('password')
@@ -205,6 +209,13 @@
 
 </script>
 <script src="assets/js/main.js"></script>
+{{-- <script>
+        $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap5',
+            format: 'yyyy-mm-dd',
+            value: '{{ now()->format('Y-m-d') }}'
+        });
+</script> --}}
 </body>
 
 </html>

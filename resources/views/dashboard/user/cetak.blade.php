@@ -63,7 +63,7 @@
             </div>
         </div>
         <div class="jenis">
-            <p><strong>Umur:</strong> {{ $riwayat->user->umur }}</p>
+            <p><strong>Umur:</strong> {{ $riwayat->user->tanggal_lahir }}</p>
         </div>
         <div class="jenis">
             <p><strong>Jenis kelamin:</strong> {{ $riwayat->user->jenis_kelamin }}</p>

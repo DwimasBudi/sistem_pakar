@@ -168,7 +168,10 @@ class DiagnosaController extends Controller
         // dd($gejalaUser);
         // exit();
         // dd($namaPenyakit->id,);
-        $maxHasil = round($maxHasil, 2);
+        // $maxHasil = round($maxHasil, 5);
+        $precision = 4;
+        $factor = pow(10, $precision);
+        $maxHasil = floor($maxHasil * $factor) / $factor;
         $riwayatDiagnosa = RiwayatDiagnosa::create([
             'id_pengguna' => Auth::user()->id,
             'id_kecanduan' => $namaKecanduan->id,

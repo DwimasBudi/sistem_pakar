@@ -60,7 +60,7 @@ class LoginController extends Controller
             'nama' => 'required',
             'username' => 'required|unique:users',
             'jenis_kelamin' => 'required',
-            'umur' => 'required|Numeric',
+            'tanggal_lahir' => 'required',
             'password' => 'required|confirmed',
         ]);
 
@@ -71,7 +71,7 @@ class LoginController extends Controller
             'level' => 'user',
             'username' => $validatedData['username'],
             'jenis_kelamin' => $validatedData['jenis_kelamin'],
-            'umur' => $validatedData['umur'],
+            'tanggal_lahir' => $validatedData['tanggal_lahir'],
             'password' => Hash::make($validatedData['password']),
         ]);
 

@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             'username' => 'admin',
             'level' => 'admin',
             'jenis_kelamin' => 'Laki-laki',
-            'umur' => '24',
+            'tanggal_lahir' => '2002-01-01',
             // 'email' => 'dwimasbudi@gmail.com',
             'password' => bcrypt('password')
         ]);
@@ -63,11 +63,11 @@ class DatabaseSeeder extends Seeder
 
         Gejala::create([
             'kode_gejala' => 'G01',
-            'nama_gejala' => 'Menghabiskan waktu online lebih lama dari yang direncanakan',
+            'nama_gejala' => 'Menghabiskan waktu di media sosial lebih lama dari yang direncanakan',
         ]);
         Gejala::create([
             'kode_gejala' => 'G02',
-            'nama_gejala' => 'Sulit membatasi waktu online meskipun berniat menguranginya',
+            'nama_gejala' => 'Sulit membatasi waktu di media sosial meskipun berniat menguranginya',
         ]);
         Gejala::create([
             'kode_gejala' => 'G03',

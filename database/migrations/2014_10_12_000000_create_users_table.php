@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('username');
             $table->string('password');
             $table->string('jenis_kelamin');
-            $table->string('umur');
+            $table->date('tanggal_lahir');
             $table->string('level');
             // $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

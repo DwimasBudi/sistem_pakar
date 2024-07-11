@@ -26,10 +26,10 @@
                                 <td>: {{ $kecanduan }}</td>
                             </tr>
 
-                            <tr>
+                            {{-- <tr>
                                 <td>Keakuratan</td>
                                 <td>: {{ $hasil }}</td>
-                            </tr>
+                            </tr> --}}
 
                             <tr>
                                 <td>Persentase</td>

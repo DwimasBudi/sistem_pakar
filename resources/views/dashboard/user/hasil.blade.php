@@ -169,7 +169,7 @@
                                             </tr>
                                             <tr>
                                                 <td width="200px">Umur</td>
-                                                <td>: {{  $riwayat->user->umur }}</td>
+                                                <td>: {{  $riwayat->user->tanggal_lahir }}</td>
                                             </tr>
 
                                             {{-- <tr>
@@ -181,16 +181,16 @@
                                                 <td>Tingkat Kecanduan </td>
                                                 <td>: {{ $riwayat->tingkat_kecanduan }}</td>
                                             </tr>
-{{-- 
-                                            <tr>
+
+                                            {{-- <tr>
                                                 <td>Keakuratan</td>
                                                 <td>: {{ $riwayat->value_cf }}</td>
-                                            </tr>
+                                            </tr> --}}
 
                                             <tr>
                                                 <td>Persentase</td>
                                                 <td>: {{ $riwayat->value_cf * 100 . '%' }}</td>
-                                            </tr> --}}
+                                            </tr>
                                             <tr>
                                                 <td colspan="2">saran : {!! $riwayat->kecanduan->saran_kecanduan !!}</td>
                                             </tr>

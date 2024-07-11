@@ -15,14 +15,6 @@
                     <span class="link-name">Dahsboard</span>
                 </a></li>
                 @endcan
-                {{-- <li><a {{ Request::is("dashboard/diagnosa*") ? "class=active" : "" }} href="/dashboard/diagnosa/">
-                    <i class="uil uil-stethoscope-alt"></i>
-                    <span class="link-name">Diagnosa</span>
-                </a></li> --}}
-                <li><a {{ Request::is("dashboard/riwayat*") ? "class=active" : "" }} href="/dashboard/riwayat/">
-                    <i class="uil uil-clipboard-alt"></i>
-                    <span class="link-name">Riwayat Diagnosa</span>
-                </a></li>
                 @can('admin')
                 {{-- <li><a {{ Request::is("dashboard/pengguna*") ? "class=active" : "" }} href="/dashboard/pengguna/">
                     <i class="uil uil-users-alt"></i>
@@ -41,6 +33,14 @@
                     <span class="link-name">Basis Aturan</span>
                 </a></li>
                 @endcan
+                <li><a {{ Request::is("dashboard/diagnosa*") ? "class=active" : "" }} href="/dashboard/diagnosa/">
+                    <i class="uil uil-stethoscope-alt"></i>
+                    <span class="link-name">Diagnosa</span>
+                </a></li>
+                <li><a {{ Request::is("dashboard/riwayat*") ? "class=active" : "" }} href="/dashboard/riwayat/">
+                    <i class="uil uil-clipboard-alt"></i>
+                    <span class="link-name">Riwayat Diagnosa</span>
+                </a></li>
             </ul>
             <ul class="logout-mode" style="padding-left:0;">
                 <li>
