@@ -21,7 +21,7 @@
                             </tr>
                             <tr>
                                 <td width="200px">Umur</td>
-                                <td>: {{ $riwayat->user->tanggal_lahir }}</td>
+                                <td>: {{ \Carbon\Carbon::parse($riwayat->user->tanggal_lahir)->age}}</td>
                             </tr>
 
                             {{-- <tr>
@@ -34,10 +34,10 @@
                                 <td>: {{ $riwayat->tingkat_kecanduan }}</td>
                             </tr>
 
-                            <tr>
+                            {{-- <tr>
                                 <td>Keakuratan</td>
                                 <td>: {{ $riwayat->value_cf }}</td>
-                            </tr>
+                            </tr> --}}
 
                             <tr>
                                 <td>Persentase</td>

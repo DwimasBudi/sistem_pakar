@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('kecanduan_id')->references('id')->on('kecanduans')->onDelete('cascade');
             $table->foreignId('gejala_id')->references('id')->on('gejalas')->onDelete('cascade');
-            $table->float('value_cf')->nullable();
+            $table->float('value_cf',7)->nullable();
             $table->timestamps();
         });
     }

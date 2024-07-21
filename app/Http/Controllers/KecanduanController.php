@@ -33,6 +33,7 @@ class KecanduanController extends Controller
         $validatedData = $request->validate([
             'kode_kecanduan' => 'required|unique:kecanduans',
             'nama_kecanduan' => 'required',
+            'saran_kecanduan' => 'required'
 
         ]);
 
@@ -66,6 +67,7 @@ class KecanduanController extends Controller
         $rules=[
             'kode_kecanduan' => 'required',
             'nama_kecanduan' => 'required',
+            'saran_kecanduan' => 'required'
         ];
         if ($request->kode_kecanduan !== $kecanduan->kode_kecanduan) {
             $rules['kode_kecanduan'] = 'unique:kecanduans';

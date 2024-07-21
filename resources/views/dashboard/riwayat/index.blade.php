@@ -29,7 +29,7 @@
             <tr>
               <td>{{ $loop->iteration }}</td>
               <td>{{ $riwayat->user->nama}}</td>
-              <td>{{ $riwayat->user->umur}}</td>
+              <td>{{ \Carbon\Carbon::parse($riwayat->user->tanggal_lahir)->age}}</td>
               <td>{{ $riwayat->user->jenis_kelamin}}</td>
               <td>{{ $riwayat->tingkat_kecanduan}} ({{ $riwayat->value_cf*100 }}%)</td>
               <td>{{ \Carbon\Carbon::parse($riwayat->created_at)->format('d M Y')}} </td>

@@ -116,6 +116,28 @@
         .btn-group-toggle .btn {
             margin-bottom: 10px;
         }
+        .cons{
+            width: 100%; 
+            display:flex; 
+            justify-content:end;
+        }
+        .child-cons{
+            width:50%;
+            display: flex
+        }
+        @media (max-width: 768px) {
+
+        }
+
+        @media (max-width: 575.98px) {
+            .child-cons{
+                width:50%;
+                
+            }
+            .cons{
+                justify-content:start;
+            }
+        }
     </style>
 </head>
 
@@ -136,7 +158,7 @@
                         <li><a href="{{ asset('/dashboard/riwayat') }}">Riwayat Diagnosa</a></li>
                         <li class="dropdown"><a href="#"><span>{{ auth()->user()->nama }}</span>  <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                             <ul>
-                            <li><a href="#">Profile</a></li>
+                            {{-- <li><a href="#">Profile</a></li> --}}
                             <li><a href="{{ asset('/logout') }}">Log Out</a></li>
                             </ul>
                         </li>
@@ -171,8 +193,8 @@
                     </div>
                     @endforeach
 
-                    <div class="cons" style="width: 100%; display:flex; justify-content:end">
-                        <div class="btn-container w-50">
+                    <div class="cons">
+                        <div class="btn-container child-cons">
                             <button type="button" class="btn btn-outline-primary" id="prevBtn" onclick="prevQuestion()" disabled>Kembali</button>
                             <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Selanjutnya</button>
                         </div>
