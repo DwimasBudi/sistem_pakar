@@ -45,7 +45,7 @@
                             </tr>
 
                             <tr>
-                                <td>Saran</td>
+                                <td>Solusi</td>
                                 <td>: {!! $riwayat->kecanduan->saran_kecanduan !!}</td>
                             </tr>
 

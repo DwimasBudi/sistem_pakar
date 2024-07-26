@@ -33,7 +33,7 @@ class GejalaController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'kode_gejala' => 'required',
+            'kode_gejala' => 'required|unique:gejalas',
             'nama_gejala' => 'required',
 
         ]);

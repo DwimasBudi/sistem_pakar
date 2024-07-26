@@ -75,7 +75,7 @@
         </div>
 
         <div class="saran">
-            <p><strong>Saran</strong></p>
+            <p><strong>Solusi</strong></p>
             {!! $riwayat->kecanduan->saran_kecanduan !!}
         </div>
         <div class="gejala">

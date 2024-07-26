@@ -98,8 +98,9 @@ class RiwayatController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(RiwayatDiagnosa $riwayat)
     {
-        //
+        RiwayatDiagnosa::destroy($riwayat->id);
+        return redirect('/dashboard/riwayat')->with('success', 'Data Gejala berhasil dihapus');
     }
 }

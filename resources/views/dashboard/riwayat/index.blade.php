@@ -35,7 +35,7 @@
               <td>{{ \Carbon\Carbon::parse($riwayat->created_at)->format('d M Y')}} </td>
               <td style="width: 100px; ">
                 <a href="/dashboard/riwayat/{{ $riwayat->id }}" class="badge text-bg-success"><i class="uil uil-eye"></i></a>
-                <form action="/dashboard/gejala/{{ $riwayat->id }}" method="post" class="d-inline">
+                <form action="/dashboard/riwayat/{{ $riwayat->id }}" method="post" class="d-inline">
                   @method('delete')
                   @csrf
                   <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><i class="uil uil-times-circle"></i></button>

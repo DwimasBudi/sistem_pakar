@@ -197,7 +197,7 @@
                                                 <td>: {{ $riwayat->value_cf * 100 . '%' }}</td>
                                             </tr>
                                             <tr>
-                                                <td colspan="2">saran : {!! $riwayat->kecanduan->saran_kecanduan !!}</td>
+                                                <td colspan="2">Solusi : {!! $riwayat->kecanduan->saran_kecanduan !!}</td>
                                             </tr>
                                         </table>
                                     </div>

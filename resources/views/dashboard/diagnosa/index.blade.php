@@ -24,12 +24,12 @@
             <td>{{ $item->nama_gejala }} : </td>
             <td>
                 <select name="{{ $item->id }}" required>
-                    <option value="0" selected>Tidak Tahu</option>
-                    <option value="0.2">Tidak Yakin</option>
+                    <option value="0" selected>TIDAK</option>
+                    {{-- <option value="0.2">Tidak Yakin</option>
                     <option value="0.4">Sedikit Yakin</option>
                     <option value="0.6">Cukup Yakin</option>
-                    <option value="0.8">Yakin</option>
-                    <option value="1">Sangat Yakin</option>
+                    <option value="0.8">Yakin</option> --}}
+                    <option value="1">IYA</option>
                 </select>
             </td>
         </tr>

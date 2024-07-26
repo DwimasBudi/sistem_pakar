@@ -26,7 +26,7 @@
     @enderror
   </div>
 <div class="mb-3 col-lg-6">
-    <label for="saran" class="form-label">saran</label>
+    <label for="saran" class="form-label">Solusi</label>
     @error('saran_kecanduan')
         <p class="text-danger">
             {{$message}}
